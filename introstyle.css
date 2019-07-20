@@ -8,11 +8,12 @@ h2,h3 {
 	color: white;
 }
 
+/*Black background to text for contrast*/
 .text {
 	background-color: black;
 }
 
-/*Button Modifications*/
+/*Button Enhancements*/
 /*Job Buttons*/
 .job {
   background-color: #f44336;
@@ -39,7 +40,7 @@ h2,h3 {
   margin: 4px 2px;
 }
 
-/*Submit Button*/
+/*Submit Button/Link*/
 .submit {
   background-color: #555555;
   border: none;
@@ -50,4 +51,10 @@ h2,h3 {
   display: inline-block;
   font-size: 16px;
   margin: 4px 2px;
+}
+
+/*Link Hiding*/
+a:link, a:visited {
+  color: white;
+  text-decoration: none;
 }

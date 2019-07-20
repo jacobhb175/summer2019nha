@@ -13,6 +13,6 @@ $(document).ready(function(){
     });
 
     $(".submit").click(function(){
-    	
+    	alert("hello world")
     })
 });
