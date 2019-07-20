@@ -1,0 +1,53 @@
+/*Dirt pic as background*/
+body {
+	background-image: url("dirt-2313866.jpg");
+}
+
+/*White Text*/
+h2,h3 {
+	color: white;
+}
+
+.text {
+	background-color: black;
+}
+
+/*Button Modifications*/
+/*Job Buttons*/
+.job {
+  background-color: #f44336;
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+}
+
+/*Lands Buttons*/
+.lands {
+  background-color: #4CAF50;
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+}
+
+/*Submit Button*/
+.submit {
+  background-color: #555555;
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+}
