@@ -11,4 +11,8 @@ $(document).ready(function(){
     	const lands = this.id;
    		console.log("lands "+lands)
     });
+
+    $(".submit").click(function(){
+    	
+    })
 });
