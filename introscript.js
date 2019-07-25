@@ -1,18 +1,24 @@
+//Delaring Variables
+let job
+let lands
+
 $(document).ready(function(){
  
 	//Set job
     $(".job").click(function(){
-    	const job = this.id;
+    	job = this.id;
     	console.log("job "+job)
     });
 
     //Set lands
     $(".lands").click(function(){
-    	const lands = this.id;
+    	lands = this.id;
    		console.log("lands "+lands)
     });
 
+    //Link to homepage, bring variables in url
     $(".submit").click(function(){
-    	alert("hello world")
+    	console.log("job " + job + " lands " + lands);
+    	location.href = "file:///Users/kimberlybernhardt/Documents/summer2019nha/homeindex.html?job=" + job + "&lands=" + lands
     })
 });
