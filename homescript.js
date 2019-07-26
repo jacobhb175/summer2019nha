@@ -12,15 +12,15 @@ let fLands
 //Declaring url storage variable
 let urlSt
 
-//Declaring other variables
-//let age = math.random()
+//Declaring and calculating value of other variables
+let age = Math.floor(Math.random() * (30 - 20) + 20);
 let year = 299
 let stars = 25
-let status = stars*0.01 //+ age*0.01;
+let status = stars*0.01 + age*0.01;
 if (job=="farmer"&&lands=="iron") {
 	status = status*0.5;
 };
-
+status = Math.round(status * 100) / 100
 
 //Setting values of formal variables and changing bg image
 switch(job) {
@@ -91,8 +91,9 @@ switch(lands) {
 }
 
 //Displaying values of variables
+document.getElementById("year").innerHTML = year + " AC";
+document.getElementById("age").innerHTML = age;
 document.getElementById("job").innerHTML = fJob;
 document.getElementById("lands").innerHTML = fLands;
-document.getElementById("year").innerHTML = year + " AC";
 document.getElementById("wealth").innerHTML = stars + " Copper Stars";
 document.getElementById("status").innerHTML = status;
