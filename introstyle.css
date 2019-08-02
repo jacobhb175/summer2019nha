@@ -8,12 +8,20 @@ h2,h3 {
 	color: white;
 }
 
-/*Black background to text for contrast*/
-.text {
-	background-color: black;
+/*Button Enhancements*/
+/*Name Button*/
+.name {
+  background-color: #008CBA;
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
 }
 
-/*Button Enhancements*/
 /*Job Buttons*/
 .job {
   background-color: #f44336;
