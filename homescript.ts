@@ -99,6 +99,16 @@ switch(you.lands) {
 		break;
 }
 
+window.link = function(file){
+    location.href = location.href = file + "?year=" + year + "&age=" +you.age + "&job=" + you.job + "&lands=" + you.lands + "&stars=" + you.stars + "&status=" + you.status;
+};
+
+//Link to tavern page, bring variables in url
+$(".tavern").click(function () {
+    console.log("job " + you.job + " lands " + you.lands);
+    location.href = "file:///Users/kimberlybernhardt/Documents/summer2019nha/tavernindex.html" + "?year=" + year + "&age=" + you.age + "&job=" + you.job + "&lands=" + you.lands + "&stars=" + you.stars + "&status=" + you.status;
+});
+
 //Displaying values of variables
 document.getElementById("year").innerHTML = year + " AC";
 document.getElementById("age").innerHTML = you.age;

@@ -42,7 +42,7 @@ switch (you.lands) {
         fLands = "The Crownlands";
         urlSt = "https://cdna.artstation.com/p/assets/images/images/018/099/756/large/kieran-belshaw-redkeepgate-new-largerversion-v006copy.jpg?1558371072";
         $(".bg").css("background-image", "url(" + urlSt + ")");
-        //audio = $("<source>").attr("src", "TargTheme.mp3");
+        audio = $("<source>").attr("src", "TargTheme.mp3");
         break;
     case "river":
         fLands = "The Riverlands";
@@ -93,6 +93,14 @@ switch (you.lands) {
         $(".bg").css("background-image", "url(" + urlSt + ")");
         break;
 }
+window.link = function (file) {
+    location.href = location.href = file + "?year=" + year + "&age=" + you.age + "&job=" + you.job + "&lands=" + you.lands + "&stars=" + you.stars + "&status=" + you.status;
+};
+//Link to tavern page, bring variables in url
+$(".tavern").click(function () {
+    console.log("job " + you.job + " lands " + you.lands);
+    location.href = "file:///Users/kimberlybernhardt/Documents/summer2019nha/tavernindex.html" + "?year=" + year + "&age=" + you.age + "&job=" + you.job + "&lands=" + you.lands + "&stars=" + you.stars + "&status=" + you.status;
+});
 //Displaying values of variables
 document.getElementById("year").innerHTML = year + " AC";
 document.getElementById("age").innerHTML = you.age;

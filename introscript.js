@@ -1,8 +1,8 @@
-//Delaring Variables
-var job;
-var lands;
+//Delaring letiables
+let job;
+let lands;
 //Creating a class to hold the name
-var User = /** @class */ (function () {
+let User = /** @class */ (function () {
     function User(firstName, lastName) {
         this.firstName = firstName;
         this.lastName = lastName;
@@ -13,11 +13,11 @@ var User = /** @class */ (function () {
 $(document).ready(function () {
     //Record name
     $(".name").click(function () {
-        var firstName = prompt("What is your first name?");
+        let firstName = prompt("What is your first name?");
         console.log("first name " + firstName);
-        var lastName = prompt("What is your last name?");
+        let lastName = prompt("What is your last name?");
         console.log("last name " + lastName);
-        var user1 = new User(firstName, lastName);
+        let user1 = new User(firstName, lastName);
         console.log("user1 " + user1);
     });
     //Set job
@@ -30,7 +30,7 @@ $(document).ready(function () {
         lands = this.id;
         console.log("lands " + lands);
     });
-    //Link to homepage, bring variables in url
+    //Link to homepage, bring letiables in url
     $(".submit").click(function () {
         console.log("job " + job + " lands " + lands);
         location.href = "file:///Users/kimberlybernhardt/Documents/summer2019nha/homeindex.html?job=" + job + "&lands=" + lands;
