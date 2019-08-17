@@ -4,10 +4,10 @@ console.log(window.location.search);
 //Declaring variables and classifying most under an object
 var year = 299;
 var you = {
-    age: 20,
+    age: searchParams.get("age"),
     job: searchParams.get("job"),
     lands: searchParams.get("lands"),
-    stars: 25,
+    stars: searchParams.get("stars"),
     status: 0
 };
 //Status-Calculation Function
@@ -93,7 +93,6 @@ switch (you.lands) {
         $(".bg").css("background-image", "url(" + urlSt + ")");
         break;
 }
-
 //Link to tavern page, bring variables in url
 $(".tavern").click(function () {
     console.log("job " + you.job + " lands " + you.lands);

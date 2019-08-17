@@ -1,6 +1,7 @@
-//Delaring letiables
+//Delaring variables
 let job;
 let lands;
+
 //Creating a class to hold the name
 let User = /** @class */ (function () {
     function User(firstName, lastName) {
@@ -10,6 +11,8 @@ let User = /** @class */ (function () {
     }
     return User;
 }());
+
+//JQuery
 $(document).ready(function () {
     //Record name
     $(".name").click(function () {
@@ -30,7 +33,7 @@ $(document).ready(function () {
         lands = this.id;
         console.log("lands " + lands);
     });
-    //Link to homepage, bring letiables in url
+    //Link to homepage, bring variables in url
     $(".submit").click(function () {
         console.log("job " + job + " lands " + lands);
         location.href = "file:///Users/kimberlybernhardt/Documents/summer2019nha/homeindex.html?job=" + job + "&lands=" + lands;
