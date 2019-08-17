@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 var Student = /** @class */ (function () {
     function Student(firstName, middleInitial, lastName) {
         this.firstName = firstName;
@@ -11,4 +12,12 @@ function greeter(person) {
     return "Hello, " + person.firstName + " " + person.lastName;
 }
 var user = new Student("Jane", "M.", "User");
+=======
+function greeter(person) {
+    return "Hello, " + person;
+}
+
+let user = "Jane User";
+
+>>>>>>> origin/master
 document.body.textContent = greeter(user);

@@ -8,6 +8,7 @@ h2,h3 {
 	color: white;
 }
 
+<<<<<<< HEAD
 /*Button Styling*/
 /*Name Button*/
 .name {
@@ -22,6 +23,14 @@ h2,h3 {
   margin: 4px 2px;
 }
 
+=======
+/*Black background to text for contrast*/
+.text {
+	background-color: black;
+}
+
+/*Button Enhancements*/
+>>>>>>> origin/master
 /*Job Buttons*/
 .job {
   background-color: #f44336;
