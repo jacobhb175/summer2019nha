@@ -8,7 +8,6 @@ h2,h3 {
 	color: white;
 }
 
-<<<<<<< HEAD
 /*Button Styling*/
 /*Name Button*/
 .name {
@@ -23,14 +22,12 @@ h2,h3 {
   margin: 4px 2px;
 }
 
-=======
-/*Black background to text for contrast*/
+/*Black background to text for contrast
 .text {
 	background-color: black;
-}
+}*/
 
 /*Button Enhancements*/
->>>>>>> origin/master
 /*Job Buttons*/
 .job {
   background-color: #f44336;
@@ -70,7 +67,7 @@ h2,h3 {
   margin: 4px 2px;
 }
 
-/*Link Hiding*/
+/*Hiding the Link*/
 a:link, a:visited {
   color: white;
   text-decoration: none;

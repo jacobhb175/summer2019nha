@@ -1,0 +1,9 @@
+/*Background*/
+body {
+  background-image: url("https://cdna.artstation.com/p/assets/covers/images/000/725/424/large/kieran-belshaw-inn-at-the-vale-v004bweb.jpg?1431604896");
+}
+
+/*White Text*/
+p {
+  color: white;
+}

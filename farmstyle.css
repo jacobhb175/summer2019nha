@@ -1,7 +1,12 @@
-/*Button Styling*/
-/*Go to Work Button*/
-.work {
-  background-color: #008CBA;
+/*Background*/
+body {
+	  
+}
+
+/*Buttons*/
+/*Action Buttons*/
+.action {
+  background-color: #4CAF50;;
   border: none;
   color: white;
   padding: 15px 32px;
@@ -11,20 +16,9 @@
   font-size: 16px;
   margin: 4px 2px;
 }
-/*Tavern Button*/
-.tavern {
-  background-color: brown;
-  border: none;
-  color: white;
-  padding: 15px 32px;
-  text-align: center;
-  text-decoration: none;
-  display: inline-block;
-  font-size: 16px;
-  margin: 4px 2px;
-}
-/*Next Year Button*/
-.nextYear {
+
+/*Back Button*/
+.back {
   background-color: #555555;
   border: none;
   color: white;

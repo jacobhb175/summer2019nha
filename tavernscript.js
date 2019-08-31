@@ -3,6 +3,7 @@ var searchParams = new URLSearchParams(window.location.search);
 console.log(window.location.search);
 //Declaring the variables
 var year = searchParams.get("year");
+var season = searchParams.get("season");
 var you = {
     age: searchParams.get("age"),
     job: searchParams.get("job"),
@@ -20,7 +21,7 @@ var blackJackQ = prompt("Harry: Well, want to play some cards in the meantime? (
 //Switching to blackjack page if you say yes
 if (blackJackQ == "yes") {
     console.log("yes");
-    location.href = "file:///Users/kimberlybernhardt/Documents/summer2019nha/blackjackindex.html" + "?year=" + year + "&age=" + you.age + "&job=" + you.job + "&lands=" + you.lands + "&stars=" + you.stars + "&status=" + you.status;
+    location.href = "file:///Users/kimberlybernhardt/Documents/summer2019nha/blackjackindex.html" + "?year=" + year + "&season=" + season + "&age=" + you.age + "&job=" + you.job + "&lands=" + you.lands + "&stars=" + you.stars + "&status=" + you.status;
 }
 //Continuing the convo if you say no
 else {
@@ -34,7 +35,14 @@ else {
         you.stars = you.stars - (beerNum - 1) * 3;
         document.getElementById("wealth").innerHTML = you.stars + " Copper Stars";
         if (you.stars <= 0) {
-            prompt("Harry: Hold on, that's not enough money. I'll have you washing dishes for the rest of the night! (Respond yes or no)");
+            alert("Harry: Hold on, that's not enough money. I'll have you washing dishes for the rest of the night!");
+            stars = 0;
         }
+        location.href = "file:///Users/kimberlybernhardt/Documents/summer2019nha/home2index.html" + "?year=" + year + "&season=" + season + "&age=" + you.age + "&job=" + you.job + "&lands=" + you.lands + "&stars=" + you.stars + "&status=" + you.status;
+    }
+    //Kicking you out if you say no
+    else {
+        alert("Harry: If you don't want to gamble, and you don't want a drink, what are you doing in a TAVERN. Just go home.")
+        location.href = "file:///Users/kimberlybernhardt/Documents/summer2019nha/home2index.html" + "?year=" + year + "&season=" + season + "&age=" + you.age + "&job=" + you.job + "&lands=" + you.lands + "&stars=" + you.stars + "&status=" + you.status;
     }
 }

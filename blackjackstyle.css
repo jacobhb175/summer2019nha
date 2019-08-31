@@ -1,9 +1,19 @@
+/*Background*/
+body {
+  background-image: url("https://cdna.artstation.com/p/assets/covers/images/000/725/424/large/kieran-belshaw-inn-at-the-vale-v004bweb.jpg?1431604896");
+}
+
+/*White Text*/
+p {
+  color: white;
+}
+
 /*Button Styling*/
 
 /*Game Buttons*/
 
 /*New Game*/
-.nGame {
+.newGame {
   background-color: #555555;
   border: none;
   color: white;
@@ -17,7 +27,7 @@
 
 /*Hit*/
 .hit {
-  {background-color: #f44336;
+  background-color: #f44336;
   border: none;
   color: white;
   padding: 15px 32px;
@@ -30,7 +40,7 @@
 
 /*Stay*/
 .stay {
-  background-color: #555555;
+  background-color: #008CBA;
   border: none;
   color: white;
   padding: 15px 32px;
@@ -45,7 +55,7 @@
 .back {
   background-color: #e7e7e7; color: black;
   border: none;
-  color: white;
+  color: black;
   padding: 15px 32px;
   text-align: center;
   text-decoration: none;

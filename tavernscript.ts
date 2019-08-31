@@ -24,7 +24,7 @@ let blackJackQ = prompt("Harry: Well, want to play some cards in the meantime? (
 //Switching to blackjack page if you say yes
 if (blackJackQ == "yes") {
 	console.log("yes");
-    location.href = "file:///Users/kimberlybernhardt/Documents/summer2019nha/blackjackindex.html" + "?year=" + year + "&age=" + you.age + "&job=" + you.job + "&lands=" + you.lands + "&stars=" + you.stars + "&status=" + you.status;
+    location.href = "file:///Users/kimberlybernhardt/Documents/summer2019nha/blackjackindex.html" + "?year=" + year + "&season=" + season + "&age=" + you.age + "&job=" + you.job + "&lands=" + you.lands + "&stars=" + you.stars + "&status=" + you.status;
 
 }
 

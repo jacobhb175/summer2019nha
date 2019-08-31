@@ -1,22 +1,27 @@
 //Finding the variables in the URL
 var searchParams = new URLSearchParams(window.location.search);
 console.log(window.location.search);
-//Declaring variables and classifying most under an object
-var year = 299;
+//Declaring variables and classifying most under the object you
+var year = searchParams.get("year");
+var season = searchParams.get("season");
 var you = {
     age: searchParams.get("age"),
     job: searchParams.get("job"),
     lands: searchParams.get("lands"),
     stars: searchParams.get("stars"),
-    status: 0
+    status: searchParams.get("status")
 };
+//Converting strings to integers
+year = (year - 1) + 1;
+you.age = (you.age - 1) + 1;
+you.stars = (you.stars - 1) + 1;
 //Status-Calculation Function
 function statusCalc() {
     you.status = (you.stars * 0.01 + you.age * 0.01);
     if (you.job == "farmer" && you.lands == "iron") {
         you.status = you.status * 0.5;
     }
-    ;
+    //Rounding off status
     you.status = Math.round(you.status * 100) / 100;
 }
 //Calling the function
@@ -93,14 +98,72 @@ switch (you.lands) {
         $(".bg").css("background-image", "url(" + urlSt + ")");
         break;
 }
-
+//Link to different work pages depending on job
+$(".work").click(function () {
+    switch (you.job) {
+        case "farmer":
+            location.href = "file:///Users/kimberlybernhardt/Documents/summer2019nha/farmindex.html" + "?year=" + year + "&season=" + season + "&age=" + you.age + "&job=" + you.job + "&lands=" + you.lands + "&stars=" + you.stars + "&status=" + you.status;
+            break;
+        case "artisan":
+            location.href = "file:///Users/kimberlybernhardt/Documents/summer2019nha/artisanindex.html" + "?year=" + year + "&season=" + season + "&age=" + you.age + "&job=" + you.job + "&lands=" + you.lands + "&stars=" + you.stars + "&status=" + you.status;
+            break;
+        case "merchant":
+            location.href = "file:///Users/kimberlybernhardt/Documents/summer2019nha/merchantindex.html" + "?year=" + year + "&season=" + season + "&age=" + you.age + "&job=" + you.job + "&lands=" + you.lands + "&stars=" + you.stars + "&status=" + you.status;
+            break;
+        case "sellsword":
+            location.href = "file:///Users/kimberlybernhardt/Documents/summer2019nha/sellswordindex.html" + "?year=" + year + "&season=" + season + "&age=" + you.age + "&job=" + you.job + "&lands=" + you.lands + "&stars=" + you.stars + "&status=" + you.status;
+    }
+});
 //Link to tavern page, bring variables in url
 $(".tavern").click(function () {
-    console.log("job " + you.job + " lands " + you.lands);
-    location.href = "file:///Users/kimberlybernhardt/Documents/summer2019nha/tavernindex.html" + "?year=" + year + "&age=" + you.age + "&job=" + you.job + "&lands=" + you.lands + "&stars=" + you.stars + "&status=" + you.status;
+    location.href = "file:///Users/kimberlybernhardt/Documents/summer2019nha/tavernindex.html" + "?year=" + year + "&season=" + season + "&age=" + you.age + "&job=" + you.job + "&lands=" + you.lands + "&stars=" + you.stars + "&status=" + you.status;
+});
+//Next Year
+$(".nextYear").click(function () {
+    //+1 year
+    year = year + 1;
+    you.age = you.age + 1;
+    //Season changes (Game of thrones has weird seasons that can last years)
+    switch (season) {
+        case "Spring":
+            //Spring to summer
+            season = "Summer";
+            //Alert of seasonal change
+            alert("A white raven from the citadel has arrived at the castle of your local lord. The seasons are changing. Spring is over and summer is coming.");
+            break;
+        case "Summer":
+            //1/5 chance of summer to fall
+            var x = Math.floor(Math.random() * Math.floor(5));
+            if (x == 0) {
+                season = "Fall";
+                //Alert of seasonal change
+                alert("A white raven from the citadel has arrived at the castle of your local lord. The seasons are changing. Summer is sadly over and fall is coming.");
+            }
+            break;
+        case "Fall":
+            //Fall to winter
+            season = "Winter";
+            //Alert of seasonal change
+            alert("A white raven from the citadel has arrived at the castle of your local lord. The seasons are changing. Fall is over and winter is coming.");
+            break;
+        case "Winter":
+            //1/3 chance of winter to spring
+            var y = Math.floor(Math.random() * Math.floor(3));
+            if (y == 0) {
+                season = "Spring";
+                //Alert of seasonal change
+                alert("A white raven from the citadel has arrived at the castle of your local lord. The seasons are changing. Winter is finally over and spring is coming.");
+            }
+            break;
+    }
+    //Update display of year, season, & age
+    document.getElementById("year").innerHTML = year + " AC";
+    document.getElementById("season").innerHTML = season;
+    document.getElementById("age").innerHTML = you.age;
 });
 //Displaying values of variables
 document.getElementById("year").innerHTML = year + " AC";
+document.getElementById("season").innerHTML = season;
 document.getElementById("age").innerHTML = you.age;
 document.getElementById("job").innerHTML = fJob;
 document.getElementById("lands").innerHTML = fLands;
