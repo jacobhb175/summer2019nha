@@ -1,15 +1,21 @@
-//Delaring Variables
-var job;
-var lands;
+//Alert
+alert("At the moment, farmer is the only functioning job. Artisan, merchant, and sellsword are all works in progress and should not be selected.")
+
+//Delaring variables
+let job;
+let lands;
 
 //Creating a class to hold the name
-class User {
-    fullName: string;
-    constructor(public firstName:string,public lastName:string) {
-        this.fullName=firstName+" "+lastName;
+let User = /** @class */ (function () {
+    function User(firstName, lastName) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.fullName = firstName + " " + lastName;
     }
-}
+    return User;
+}());
 
+//JQuery
 $(document).ready(function () {
     //Record name
     $(".name").click(function () {
@@ -17,10 +23,9 @@ $(document).ready(function () {
         console.log("first name " + firstName);
         let lastName = prompt("What is your last name?");
         console.log("last name " + lastName);
-        let user1 = new User(firstName,lastName);
+        let user1 = new User(firstName, lastName);
         console.log("user1 " + user1);
     });
-
     //Set job
     $(".job").click(function () {
         job = this.id;

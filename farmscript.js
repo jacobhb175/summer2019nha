@@ -65,7 +65,6 @@ switch (you.lands) {
         fLands = "The Crownlands";
         urlSt = "https://cdna.artstation.com/p/assets/images/images/018/099/756/large/kieran-belshaw-redkeepgate-new-largerversion-v006copy.jpg?1558371072";
         $(".bg").css("background-image", "url(" + urlSt + ")");
-        audio = $("<source>").attr("src", "TargTheme.mp3");
         break;
     case "river":
         fLands = "The Riverlands";

@@ -13,11 +13,12 @@ var you = {
     stars: searchParams.get("stars"),
     status: searchParams.get("status")
 };
+
 //Other variables under object farm
 var farm = {
     seed: searchParams.get("seed"),
     turnOver: searchParams.get("turnOver"),
-    growth: searchParams.get("field")
+    growth: searchParams.get("growth")
 }
 
 //Rounding off status
@@ -30,6 +31,14 @@ you.age = you.age - 1 + 1;
 you.stars = you.stars - 1 + 1;
 farm.seed = farm.seed - 1 + 1;
 farm.growth = farm.growth - 1 + 1;
+
+//Converting string to boolean
+if (farm.turnOver == "true") {
+    farm.turnOver = true;
+}
+else if (farm.turnOver == "false") {
+    farm.turnOver = false;
+}
 
 //Status-Calculation Function
 function statusCalc() {
@@ -118,14 +127,17 @@ switch (you.lands) {
 $(".work").click(function () {
     switch (you.job) {
         case "farmer":
-            location.href = "file:///Users/kimberlybernhardt/Documents/summer2019nha/farmindex.html" + "?year=" + year + "&season=" + season + "&seasonLng=" + seasonLng + "&age=" + you.age + "&job=" + you.job + "&lands=" + you.lands + "&stars=" + you.stars + "&status=" + you.status + "&seed=" + farm.seed + "&growth=" + farm.growth + "&turnOver=" + farm.turnOver;            break;
+            location.href = "file:///Users/kimberlybernhardt/Documents/summer2019nha/farmindex.html" + "?year=" + year + "&season=" + season + "&seasonLng=" + seasonLng + "&age=" + you.age + "&job=" + you.job + "&lands=" + you.lands + "&stars=" + you.stars + "&status=" + you.status + "&seed=" + farm.seed + "&growth=" + farm.growth + "&turnOver=" + farm.turnOver;            
+            break;
         case "artisan":
-            location.href = "file:///Users/kimberlybernhardt/Documents/summer2019nha/artisanindex.html" + "?year=" + year + "&season=" + season + "&seasonLng=" + seasonLng + "&age=" + you.age + "&job=" + you.job + "&lands=" + you.lands + "&stars=" + you.stars + "&status=" + you.status + "&seed=" + farm.seed + "&growth=" + farm.growth + "&turnOver=" + farm.turnOver;            break;
+            location.href = "file:///Users/kimberlybernhardt/Documents/summer2019nha/artisanindex.html" + "?year=" + year + "&season=" + season + "&seasonLng=" + seasonLng + "&age=" + you.age + "&job=" + you.job + "&lands=" + you.lands + "&stars=" + you.stars + "&status=" + you.status + "&seed=" + farm.seed + "&growth=" + farm.growth + "&turnOver=" + farm.turnOver;            
+            break;
         case "merchant":
             location.href = "file:///Users/kimberlybernhardt/Documents/summer2019nha/merchantindex.html" + "?year=" + year + "&season=" + season + "&seasonLng=" + seasonLng + "&age=" + you.age + "&job=" + you.job + "&lands=" + you.lands + "&stars=" + you.stars + "&status=" + you.status + "&seed=" + farm.seed + "&growth=" + farm.growth + "&turnOver=" + farm.turnOver;
             break;
         case "sellsword":
-            location.href = "file:///Users/kimberlybernhardt/Documents/summer2019nha/sellswordindex.html" + "?year=" + year + "&season=" + season + "&seasonLng=" + seasonLng + "&age=" + you.age + "&job=" + you.job + "&lands=" + you.lands + "&stars=" + you.stars + "&status=" + you.status + "&seed=" + farm.seed + "&growth=" + farm.growth + "&turnOver=" + farm.turnOver;    }
+            location.href = "file:///Users/kimberlybernhardt/Documents/summer2019nha/sellswordindex.html" + "?year=" + year + "&season=" + season + "&seasonLng=" + seasonLng + "&age=" + you.age + "&job=" + you.job + "&lands=" + you.lands + "&stars=" + you.stars + "&status=" + you.status + "&seed=" + farm.seed + "&growth=" + farm.growth + "&turnOver=" + farm.turnOver;    
+        }
 });
 //Link to tavern page, bring variables in url
 $(".tavern").click(function () {
@@ -161,8 +173,9 @@ $(".nextYear").click(function () {
                     alert("Winter has come early this year. An early cold snap has killed off your crops.")
                     farm.growth = 0;
                     //You must pay for food
-                    alert("With the arrival of winter, you can no longer subsist off of excess from your farm. Each year of winter, you will need to spend an increasing amount of money to purchase food. This year, it will be 4 stars");
-                    you.stars = you.stars - 4;
+                    alert("With the arrival of winter, you can no longer subsist off of excess from your farm. Each year of winter, you will need to spend an increasing amount of money to purchase food. This year, it will be 3 stars.");
+                    you.stars = you.stars - 3;
+                    document.getElementById("wealth").innerHTML = you.stars + " Copper Stars";
                 }
                 //Fall arrives
                 else {
@@ -186,8 +199,9 @@ $(".nextYear").click(function () {
             alert("Winter has come early this year. An early cold snap has killed off your crops.")
             farm.growth = 0;
             //You must pay for food
-            alert("With the arrival of winter, you can no longer subsist off of excess from your farm. Each year of winter, you will need to spend an increasing amount of money to purchase food. This year, it will be "+ (3 + seasonLng) + " stars");
-            you.stars = you.stars - (3 + seasonLng);
+            alert("With the arrival of winter, you can no longer subsist off of excess from your farm. Each year of winter, you will need to spend an increasing amount of money to purchase food. This year, it will be 3 stars.");
+            you.stars = you.stars - 3;
+            document.getElementById("wealth").innerHTML = you.stars + " Copper Stars";
             //Set how many years the new season has lasted
             seasonLng = 1;
             break;
@@ -199,12 +213,38 @@ $(".nextYear").click(function () {
                 //Alert of seasonal change
                 alert("A white raven from the citadel has arrived at the castle of your local lord. The seasons are changing. Winter is finally over and spring is coming.");
             }
+            //Winter continues
+            else {
+                //Making you pay for food
+                alert("This year, food will cost " + (3 + Math.pow(2, seasonLng)) + " stars. If you cannot pay for food, you will starve to death.");
+                you.stars = you.stars - (3 + Math.pow(2, seasonLng));
+                document.getElementById("wealth").innerHTML = you.stars + " Copper Stars";
+                //Record how long winter has lasted
+                seasonLng = seasonLng + 1;
+                //Starvation
+                if(you.stars < 0) {
+                    location.href = "file:///Users/kimberlybernhardt/Documents/summer2019nha/deathindex.html" + "?year=" + year + "&season=" + season + "&seasonLng=" + seasonLng + "&age=" + you.age + "&job=" + you.job + "&lands=" + you.lands + "&stars=" + you.stars + "&status=" + you.status + "&seed=" + farm.seed + "&growth=" + farm.growth + "&turnOver=" + farm.turnOver;
+                }
+            }
             break;
+    }
+    //Chance of death depending on age
+    var z = Math.floor(Math.random() * Math.floor(100));
+    if (you.age >= 30 && you.age <= 40) {
+        if (z<5) {
+          location.href = "file:///Users/kimberlybernhardt/Documents/summer2019nha/deathindex.html" + "?year=" + year + "&season=" + season + "&seasonLng=" + seasonLng + "&age=" + you.age + "&job=" + you.job + "&lands=" + you.lands + "&stars=" + you.stars + "&status=" + you.status + "&seed=" + farm.seed + "&growth=" + farm.growth + "&turnOver=" + farm.turnOver;  
+        }
+    }
+    else if (you.age > 40) {
+        if (z < (0.5*you.age)) {
+            location.href = "file:///Users/kimberlybernhardt/Documents/summer2019nha/deathindex.html" + "?year=" + year + "&season=" + season + "&seasonLng=" + seasonLng + "&age=" + you.age + "&job=" + you.job + "&lands=" + you.lands + "&stars=" + you.stars + "&status=" + you.status + "&seed=" + farm.seed + "&growth=" + farm.growth + "&turnOver=" + farm.turnOver;  
+        }
     }
     //Update display of year, season, & age
     document.getElementById("year").innerHTML = year + " AC";
     document.getElementById("season").innerHTML = season;
     document.getElementById("age").innerHTML = you.age;
+    console.log(seasonLng);
 });
 //Displaying values of variables
 document.getElementById("year").innerHTML = year + " AC";

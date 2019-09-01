@@ -34,6 +34,14 @@ you.stars = you.stars - 1 + 1;
 farm.seed = farm.seed - 1 + 1;
 farm.growth = farm.growth - 1 + 1;
 
+//Converting string to boolean
+if (farm.turnOver == "true") {
+    farm.turnOver = true;
+}
+else if (farm.turnOver == "false") {
+    farm.turnOver = false;
+}
+
 //Declaring formal variables
 var fJob;
 var fLands;
@@ -57,7 +65,6 @@ switch (you.lands) {
         fLands = "The Crownlands";
         urlSt = "https://cdna.artstation.com/p/assets/images/images/018/099/756/large/kieran-belshaw-redkeepgate-new-largerversion-v006copy.jpg?1558371072";
         $(".bg").css("background-image", "url(" + urlSt + ")");
-        audio = $("<source>").attr("src", "TargTheme.mp3");
         break;
     case "river":
         fLands = "The Riverlands";
@@ -122,7 +129,7 @@ if (farm.seed == null || farm.turnOver == null) {
     farm.seed = 0;
     document.getElementById("seed").innerHTML = farm.seed + " Wagonloads";
     //Set up turnOver var
-    farm.turnOver = "false";
+    farm.turnOver = false;
     //set up growth var
     farm.growth = 0;
     document.getElementById("growth").innerHTML = farm.growth;
@@ -137,7 +144,7 @@ $(document).ready(function () {
     $(".action").click(function () {
         action = this.id;
         console.log("action " + action);
-        if (farm.turnOver == "true") {
+        if (farm.turnOver == true) {
             alert("Sorry, you've used up your turn for this year. Return to the homepage and click Next Year to take your next turn.")
         }
         else {
@@ -155,7 +162,7 @@ $(document).ready(function () {
                     farm.seed = farm.seed + purchase;
                     document.getElementById("seed").innerHTML = farm.seed + " Wagonloads";
                     //End your turn
-                    farm.turnOver = "true";
+                    farm.turnOver = true;
                     break;
                 case "plant":
                     if (season == "Winter") {
@@ -169,7 +176,7 @@ $(document).ready(function () {
                         farm.growth = 1;
                         document.getElementById("growth").innerHTML = farm.growth;
                         //End turn
-                        farm.turnOver = "true";
+                        farm.turnOver = true;
                     }
                     break;
                 case "tend":
@@ -187,7 +194,7 @@ $(document).ready(function () {
                         //Update growth
                         document.getElementById("growth").innerHTML = farm.growth;
                         //End turn
-                        farm.turnOver = "true";
+                        farm.turnOver = true;
                     }   
                     break;
                 case "harvest":

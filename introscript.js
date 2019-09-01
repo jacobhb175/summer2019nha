@@ -1,3 +1,6 @@
+//Alert
+alert("At the moment, farmer is the only functioning job. Artisan, merchant, and sellsword are all works in progress and should not be selected.")
+
 //Delaring variables
 let job;
 let lands;

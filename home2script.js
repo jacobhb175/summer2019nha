@@ -216,7 +216,7 @@ $(".nextYear").click(function () {
             //Winter continues
             else {
                 //Making you pay for food
-                alert("This year, food will cost " + (3 + Math.pow(2, seasonLng)) + " stars");
+                alert("This year, food will cost " + (3 + Math.pow(2, seasonLng)) + " stars. If you cannot pay for food, you will starve to death.");
                 you.stars = you.stars - (3 + Math.pow(2, seasonLng));
                 document.getElementById("wealth").innerHTML = you.stars + " Copper Stars";
                 //Record how long winter has lasted
@@ -227,6 +227,18 @@ $(".nextYear").click(function () {
                 }
             }
             break;
+    }
+    //Chance of death depending on age
+    var z = Math.floor(Math.random() * Math.floor(100));
+    if (you.age >= 30 && you.age <= 40) {
+        if (z<5) {
+          location.href = "file:///Users/kimberlybernhardt/Documents/summer2019nha/deathindex.html" + "?year=" + year + "&season=" + season + "&seasonLng=" + seasonLng + "&age=" + you.age + "&job=" + you.job + "&lands=" + you.lands + "&stars=" + you.stars + "&status=" + you.status + "&seed=" + farm.seed + "&growth=" + farm.growth + "&turnOver=" + farm.turnOver;  
+        }
+    }
+    else if (you.age > 40) {
+        if (z < (0.5*you.age)) {
+            location.href = "file:///Users/kimberlybernhardt/Documents/summer2019nha/deathindex.html" + "?year=" + year + "&season=" + season + "&seasonLng=" + seasonLng + "&age=" + you.age + "&job=" + you.job + "&lands=" + you.lands + "&stars=" + you.stars + "&status=" + you.status + "&seed=" + farm.seed + "&growth=" + farm.growth + "&turnOver=" + farm.turnOver;  
+        }
     }
     //Update display of year, season, & age
     document.getElementById("year").innerHTML = year + " AC";
