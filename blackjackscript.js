@@ -2,9 +2,11 @@
 var searchParams = new URLSearchParams(window.location.search);
 console.log(window.location.search);
 
-//Declaring variables and classifying most under an object
+//Declaring variables and classifying most under the object you
 var year = searchParams.get("year");
 var season = searchParams.get("season");
+var seasonLng = searchParams.get("seasonLng")
+
 var you = {
     age: searchParams.get("age"),
     job: searchParams.get("job"),
@@ -12,6 +14,24 @@ var you = {
     stars: searchParams.get("stars"),
     status: searchParams.get("status")
 };
+//Other variables under object farm
+var farm = {
+    seed: searchParams.get("seed"),
+    turnOver: searchParams.get("turnOver"),
+    growth: searchParams.get("field")
+}
+
+//Rounding off status
+you.status = Math.round(you.status * 100) / 100;
+
+//Converting strings to integers
+year = year - 1 + 1;
+seasonLng = seasonLng - 1 + 1;
+you.age = you.age - 1 + 1;
+you.stars = you.stars - 1 + 1;
+if (farm.seed != null) {
+    farm.seed = farm.seed - 1 + 1;
+}
 
 //Declare variables
 let user = 'player';
@@ -246,6 +266,6 @@ $(document).ready(function () {
 
   //Back
   $(".back").click(function () {
-  location.href = "file:///Users/kimberlybernhardt/Documents/summer2019nha/home2index.html" + "?year=" + year + "&season=" + season + "&age=" + you.age + "&job=" + you.job + "&lands=" + you.lands + "&stars=" + you.stars + "&status=" + you.status;
+   location.href = "file:///Users/kimberlybernhardt/Documents/summer2019nha/home2index.html" + "?year=" + year + "&season=" + season + "&seasonLng=" + seasonLng + "&age=" + you.age + "&job=" + you.job + "&lands=" + you.lands + "&stars=" + you.stars + "&status=" + you.status + "&seed=" + farm.seed + "&growth=" + farm.growth + "&turnOver=" + farm.turnOver;
   });
 });

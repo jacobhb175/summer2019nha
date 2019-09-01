@@ -7,6 +7,7 @@ console.log(window.location.search);
 //Declaring variables and classifying most under the object you
 var year = searchParams.get("year");
 var season = searchParams.get("season");
+var seasonLng = searchParams.get("seasonLng")
 
 var you = {
     age: searchParams.get("age"),
@@ -19,7 +20,7 @@ var you = {
 var farm = {
     seed: searchParams.get("seed"),
     turnOver: searchParams.get("turnOver"),
-    growth: searchParams.get("field")
+    growth: searchParams.get("growth")
 }
 
 //Rounding off status
@@ -27,10 +28,18 @@ you.status = Math.round(you.status * 100) / 100;
 
 //Converting strings to integers
 year = year - 1 + 1;
+seasonLng = seasonLng - 1 + 1;
 you.age = you.age - 1 + 1;
 you.stars = you.stars - 1 + 1;
-if (farm.seed != null) {
-    farm.seed = farm.seed - 1 + 1;
+farm.seed = farm.seed - 1 + 1;
+farm.growth = farm.growth - 1 + 1;
+
+//Converting string to boolean
+if (farm.turnOver == "true") {
+    farm.turnOver = true;
+}
+else if (farm.turnOver == "false") {
+    farm.turnOver = false;
 }
 
 //Declaring formal variables
@@ -62,8 +71,6 @@ switch (you.lands) {
         fLands = "The Riverlands";
         urlSt = "https://vignette.wikia.nocookie.net/gameofthrones/images/6/66/Riverrun._battlements.png/revision/latest/scale-to-width-down/2000?cb=20160606102912";
         $(".bg").css("background-image", "url(" + urlSt + ")");
-        $("p").css("color", "white");
-        $("h2").css("color", "white");
         break;
     case "storm":
         fLands = "The Stormlands";
@@ -74,8 +81,6 @@ switch (you.lands) {
         fLands = "Dorne";
         urlSt = "https://cdna.artstation.com/p/assets/images/images/017/150/796/large/daniel-alekow-uw-sunspear-daniel-alekow.jpg?1554830966";
         $(".bg").css("background-image", "url(" + urlSt + ")");
-        $("p").css("color", "white");
-        $("h2").css("color", "white");
         break;
     case "reach":
         fLands = "The Reach";
@@ -86,15 +91,11 @@ switch (you.lands) {
         fLands = "The Westerlands";
         urlSt = "https://vignette.wikia.nocookie.net/gameofthrones/images/5/5b/Lannisport.png/revision/latest?cb=20170211173049";
         $(".bg").css("background-image", "url(" + urlSt + ")");
-        $("p").css("color", "white");
-        $("h2").css("color", "white");
         break;
     case "iron":
         fLands = "The Iron Isles";
         urlSt = "https://cdnb.artstation.com/p/assets/images/images/007/920/459/large/olena-nemitkova-1920.jpg?1509367783";
         $(".bg").css("background-image", "url(" + urlSt + ")");
-        $("p").css("color", "white");
-        $("h2").css("color", "white");
         break;
     case "north":
         fLands = "The North";
@@ -122,9 +123,9 @@ document.getElementById("growth").innerHTML = farm.growth;
 //Farm Stuff
 
 //In case you haven't been to the farm yet
-if (farm.seed == null && farm.turnOver == null || farm.field == null) {
+if (farm.seed == null || farm.turnOver == null) {
     //Explanation 
-    alert("This is your farm. Each year/turn you may pick one of four actions: Buy Seed, which buys seed to be planted, Plant Seed, which plants the seed, Tend Crops, which increases your crops' growth. Crops will be ready for harvest after a growth of 3, and are unable to grow beyond 10, and Harvest Crops, which harvests the crops and your profit. Warning: Crops cannot be planted in winter and, when winter hits, your existing crops will be destroyed by the cold if not already harvested.");
+    alert("This is your farm. Each year/turn you may pick one of four actions: Buy Seed, which buys seed to be planted, Plant Seed, which plants the seed, Tend Crops, which increases your crops' growth and Harvest Crops, which harvests the crops and your profit. Crops will be ready for harvest after a growth of 3, and are unable to grow beyond 10. Warning: Crops cannot be planted in winter and, when winter hits, your existing crops will be destroyed by the cold if not already harvested.");
     //Set up your seed var
     farm.seed = 0;
     document.getElementById("seed").innerHTML = farm.seed + " Wagonloads";
@@ -165,14 +166,19 @@ $(document).ready(function () {
                     farm.turnOver = true;
                     break;
                 case "plant":
-                    //Lose seed
-                    farm.seed = farm.seed - 1;
-                    document.getElementById("seed").innerHTML = farm.seed + " Wagonloads";
-                    //Plant field
-                    farm.growth = 1;
-                    document.getElementById("growth").innerHTML = farm.growth;
-                    //End turn
-                    farm.turnOver = true;
+                    if (season == "Winter") {
+                        alert("It is winter. Your field is buried in snow and you have no space to plant things.")
+                    }
+                    else {
+                        //Lose seed
+                        farm.seed = farm.seed - 1;
+                        document.getElementById("seed").innerHTML = farm.seed + " Wagonloads";
+                        //Plant field
+                        farm.growth = 1;
+                        document.getElementById("growth").innerHTML = farm.growth;
+                        //End turn
+                        farm.turnOver = true;
+                    }
                     break;
                 case "tend":
                     //If your crops are fully grown
@@ -181,17 +187,19 @@ $(document).ready(function () {
                     }
                     else if (farm.growth < 10) {
                         //Random growth increase, exponentially higher depending on existing growth
-                        farm.growth = farm.growth + Math.floor(Math.random() * Math.floor(farm.field));
+                        farm.growth = farm.growth + Math.floor(Math.random() * Math.floor(farm.growth)) + 1;
                         //Cap growth at 10
                         if (farm.growth >= 10) {
                             farm.growth = 10;
                         }
+                        //Update growth
+                        document.getElementById("growth").innerHTML = farm.growth;
                         //End turn
                         farm.turnOver = true;
                     }   
                     break;
                 case "harvest":
-                    //If there's to little to harvest
+                    //If there's too little to harvest
                     if (farm.growth <= 3) {
                         alert("Your crops haven't grown enough to be harvested yet.");
                     }
@@ -210,6 +218,6 @@ $(document).ready(function () {
     });
     //Link to homepage, bring variables in url
     $(".back").click(function () {
-        location.href = "file:///Users/kimberlybernhardt/Documents/summer2019nha/home2index.html" + "?year=" + year + "&season=" + season + "&age=" + you.age + "&job=" + you.job + "&lands=" + you.lands + "&stars=" + you.stars + "&status=" + you.status + "&"
+        location.href = "file:///Users/kimberlybernhardt/Documents/summer2019nha/home2index.html" + "?year=" + year + "&season=" + season + "&seasonLng=" + seasonLng + "&age=" + you.age + "&job=" + you.job + "&lands=" + you.lands + "&stars=" + you.stars + "&status=" + you.status + "&seed=" + farm.seed + "&growth=" + farm.growth + "&turnOver=" + farm.turnOver;
     });
 });

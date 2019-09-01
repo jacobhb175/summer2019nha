@@ -1,10 +1,11 @@
 //Finding the variables in the URL
 var searchParams = new URLSearchParams(window.location.search);
 console.log(window.location.search);
-
 //Declaring variables and classifying most under the object you
 var year = searchParams.get("year");
 var season = searchParams.get("season");
+var seasonLng = searchParams.get("seasonLng")
+
 var you = {
     age: searchParams.get("age"),
     job: searchParams.get("job"),
@@ -12,11 +13,23 @@ var you = {
     stars: searchParams.get("stars"),
     status: searchParams.get("status")
 };
+//Other variables under object farm
+var farm = {
+    seed: searchParams.get("seed"),
+    turnOver: searchParams.get("turnOver"),
+    growth: searchParams.get("field")
+}
+
+//Rounding off status
+you.status = Math.round(you.status * 100) / 100;
 
 //Converting strings to integers
-year = (year - 1) + 1;
-you.age = (you.age - 1) + 1;
-you.stars = (you.stars - 1) + 1;
+year = year - 1 + 1;
+seasonLng = seasonLng - 1 + 1;
+you.age = you.age - 1 + 1;
+you.stars = you.stars - 1 + 1;
+farm.seed = farm.seed - 1 + 1;
+farm.growth = farm.growth - 1 + 1;
 
 //Status-Calculation Function
 function statusCalc() {
@@ -27,17 +40,13 @@ function statusCalc() {
     //Rounding off status
     you.status = Math.round(you.status * 100) / 100;
 }
-
 //Calling the function
 statusCalc();
-
 //Declaring formal variables
 var fJob;
 var fLands;
-
 //Declaring url storage variable
 var urlSt;
-
 //Setting values of formal variables and changing bg image and audio and txt color depending on lands
 switch (you.job) {
     case "farmer":
@@ -105,61 +114,87 @@ switch (you.lands) {
         $(".bg").css("background-image", "url(" + urlSt + ")");
         break;
 }
-
 //Link to different work pages depending on job
 $(".work").click(function () {
-    switch(you.job) {
+    switch (you.job) {
         case "farmer":
-            location.href = "file:///Users/kimberlybernhardt/Documents/summer2019nha/farmindex.html" + "?year=" + year + "&season=" + season + "&age=" + you.age + "&job=" + you.job + "&lands=" + you.lands + "&stars=" + you.stars + "&status=" + you.status;
-            break;
+            location.href = "file:///Users/kimberlybernhardt/Documents/summer2019nha/farmindex.html" + "?year=" + year + "&season=" + season + "&seasonLng=" + seasonLng + "&age=" + you.age + "&job=" + you.job + "&lands=" + you.lands + "&stars=" + you.stars + "&status=" + you.status + "&seed=" + farm.seed + "&growth=" + farm.growth + "&turnOver=" + farm.turnOver;            break;
         case "artisan":
-            location.href = "file:///Users/kimberlybernhardt/Documents/summer2019nha/artisanindex.html" + "?year=" + year + "&season=" + season + "&age=" + you.age + "&job=" + you.job + "&lands=" + you.lands + "&stars=" + you.stars + "&status=" + you.status;
-            break;
+            location.href = "file:///Users/kimberlybernhardt/Documents/summer2019nha/artisanindex.html" + "?year=" + year + "&season=" + season + "&seasonLng=" + seasonLng + "&age=" + you.age + "&job=" + you.job + "&lands=" + you.lands + "&stars=" + you.stars + "&status=" + you.status + "&seed=" + farm.seed + "&growth=" + farm.growth + "&turnOver=" + farm.turnOver;            break;
         case "merchant":
-            location.href = "file:///Users/kimberlybernhardt/Documents/summer2019nha/merchantindex.html" + "?year=" + year + "&season=" + season + "&age=" + you.age + "&job=" + you.job + "&lands=" + you.lands + "&stars=" + you.stars + "&status=" + you.status;
+            location.href = "file:///Users/kimberlybernhardt/Documents/summer2019nha/merchantindex.html" + "?year=" + year + "&season=" + season + "&seasonLng=" + seasonLng + "&age=" + you.age + "&job=" + you.job + "&lands=" + you.lands + "&stars=" + you.stars + "&status=" + you.status + "&seed=" + farm.seed + "&growth=" + farm.growth + "&turnOver=" + farm.turnOver;
             break;
         case "sellsword":
-            location.href = "file:///Users/kimberlybernhardt/Documents/summer2019nha/sellswordindex.html" + "?year=" + year + "&season=" + season + "&age=" + you.age + "&job=" + you.job + "&lands=" + you.lands + "&stars=" + you.stars + "&status=" + you.status;
-    }
+            location.href = "file:///Users/kimberlybernhardt/Documents/summer2019nha/sellswordindex.html" + "?year=" + year + "&season=" + season + "&seasonLng=" + seasonLng + "&age=" + you.age + "&job=" + you.job + "&lands=" + you.lands + "&stars=" + you.stars + "&status=" + you.status + "&seed=" + farm.seed + "&growth=" + farm.growth + "&turnOver=" + farm.turnOver;    }
 });
-
 //Link to tavern page, bring variables in url
 $(".tavern").click(function () {
-    location.href = "file:///Users/kimberlybernhardt/Documents/summer2019nha/tavernindex.html" + "?year=" + year + "&season=" + season + "&age=" + you.age + "&job=" + you.job + "&lands=" + you.lands + "&stars=" + you.stars + "&status=" + you.status;
+    location.href = "file:///Users/kimberlybernhardt/Documents/summer2019nha/tavernindex.html" + "?year=" + year + "&season=" + season + "&seasonLng=" + seasonLng + "&age=" + you.age + "&job=" + you.job + "&lands=" + you.lands + "&stars=" + you.stars + "&status=" + you.status + "&seed=" + farm.seed + "&growth=" + farm.growth + "&turnOver=" + farm.turnOver;
 });
-
 //Next Year
 $(".nextYear").click(function () {
-    //+1 year
-    year = year+1;
-    you.age = you.age+1;
-    //Season changes (Game of thrones has weird seasons that can last years)
+    //+1 year/turn
+    year = year + 1;
+    you.age = you.age + 1;
+    farm.turnOver = false;
+    //Season changes (Game of thrones has weird seasons with winters and summers that can last years)
     switch (season) {
         case "Spring":
             //Spring to summer
             season = "Summer";
             //Alert of seasonal change
             alert("A white raven from the citadel has arrived at the castle of your local lord. The seasons are changing. Spring is over and summer is coming.");
+            //Set how many years the season has lasted
+            seasonLng = 1;
             break;
         case "Summer":
-            //1/5 chance of summer to fall
-            let x = Math.floor(Math.random() * Math.floor(5));
-            if (x == 0) {
-                season = "Fall";
-                //Alert of seasonal change
-                alert("A white raven from the citadel has arrived at the castle of your local lord. The seasons are changing. Summer is sadly over and fall is coming.");
+            //Chance of summer to end gets higher depending on how long it's already lasted
+            var x = Math.floor(Math.random() * Math.floor(15));
+            //Summer ends
+            if (x <= seasonLng) {
+                //Winter comes without warning
+                if (x*2 <= seasonLng) {
+                    season = "Winter"
+                    //Alert of seasonal change
+                    alert("A white raven from the citadel has arrived at the castle of your local lord. The seasons are changing. Summer is over and winter has arrived.");
+                    //Crops destroyed
+                    alert("Winter has come early this year. An early cold snap has killed off your crops.")
+                    farm.growth = 0;
+                    //You must pay for food
+                    alert("With the arrival of winter, you can no longer subsist off of excess from your farm. Each year of winter, you will need to spend an increasing amount of money to purchase food. This year, it will be 4 stars");
+                    you.stars = you.stars - 4;
+                }
+                //Fall arrives
+                else {
+                    season = "Fall";
+                }
+                //Set how many years the new season has lasted
+                seasonLng = 1;
+            }
+            //Summer continues
+            else {
+                //Record how long summer has lasted
+                seasonLng = seasonLng + 1;
             }
             break;
         case "Fall":
             //Fall to winter
-            season = "Winter"
+            season = "Winter";
             //Alert of seasonal change
-            alert("A white raven from the citadel has arrived at the castle of your local lord. The seasons are changing. Fall is over and winter is coming.");
+            alert("A white raven from the citadel has arrived at the castle of your local lord. The seasons are changing and winter is here.");
+            //Crops destroyed
+            alert("Winter has come early this year. An early cold snap has killed off your crops.")
+            farm.growth = 0;
+            //You must pay for food
+            alert("With the arrival of winter, you can no longer subsist off of excess from your farm. Each year of winter, you will need to spend an increasing amount of money to purchase food. This year, it will be "+ (3 + seasonLng) + " stars");
+            you.stars = you.stars - (3 + seasonLng);
+            //Set how many years the new season has lasted
+            seasonLng = 1;
             break;
         case "Winter":
-            //1/3 chance of winter to spring
-            let y = Math.floor(Math.random() * Math.floor(3));
-            if (y == 0) {
+            //Chance of winter to end gets higher depending on how long it's already lasted
+            var y = Math.floor(Math.random() * Math.floor(20));
+            if (y <= seasonLng) {
                 season = "Spring";
                 //Alert of seasonal change
                 alert("A white raven from the citadel has arrived at the castle of your local lord. The seasons are changing. Winter is finally over and spring is coming.");
@@ -171,7 +206,6 @@ $(".nextYear").click(function () {
     document.getElementById("season").innerHTML = season;
     document.getElementById("age").innerHTML = you.age;
 });
-
 //Displaying values of variables
 document.getElementById("year").innerHTML = year + " AC";
 document.getElementById("season").innerHTML = season;
